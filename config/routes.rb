@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   post "/signup/:role", to: "users#create"
 
   get "/home", to: "pages#home", as: :home
+  get "/information", to: "pages#information", as: :information
+  get "/settings", to: "pages#settings", as: :settings
+  get "/menu/:id", to: "pages#menu_detail", as: :menu_detail
+  post "/menu/:id/order", to: "pages#order", as: :menu_order
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
