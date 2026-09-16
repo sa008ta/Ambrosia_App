@@ -1,0 +1,26 @@
+<div class="auth-shell">
+  <div class="home-card">
+    <h1 class="heading">Ambrosia App</h1>
+    <p class="subtitle">どのアカウントで利用しますか？</p>
+
+    <div class="role-grid">
+      <%= link_to login_path(role: "customer"), class: "role-card" do %>
+        <h3>お客様</h3>
+        <p>ログイン</p>
+      <% end %>
+
+      <%= link_to signup_path("customer"), class: "role-card" do %>
+        <p>新規登録</p>
+      <% end %>
+
+      <%= link_to login_path(role: "staff"), class: "role-card" do %>
+        <h3>店員</h3>
+        <p>ログイン</p>
+      <% end %>
+
+      <%= link_to signup_path("staff"), class: "role-card" do %>
+        <p>新規登録</p>
+      <% end %>
+    </div>
+  </div>
+</div>
