@@ -1,4 +1,9 @@
 <h1>設定</h1>
 
-<!-- Added: simple placeholder page for settings. -->
-<p>設定画面</p>
+<ul>
+  <li><%= link_to "アカウントトップ", account_top_path %></li>
+  <li><%= link_to "履歴", history_path %></li>
+  <li>言語設定</li>
+  <li><%= button_to "ログアウト", logout_path, method: :delete %></li>
+</ul>
+

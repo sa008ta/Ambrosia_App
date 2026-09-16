@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:update_account]
+
   def new
     @role = normalized_role(params[:role])
     @user = User.new(role: @role)
@@ -21,9 +23,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_account
+    @user = current_user
+    return redirect_to root_path, alert: "ログインしてください。" unless @user
+
+    if @user.update(account_params)
+      redirect_to settings_path, notice: "アカウント情報を更新しました。"
+    else
+      render "pages/account_top", status: :unprocessable_entity
+    end
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
+  end
+
+  def account_params
+    params.require(:user).permit(:name, :username, :email)
   end
 end

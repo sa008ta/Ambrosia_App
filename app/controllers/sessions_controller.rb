@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :require_logout, only: [:new, :create]
+
   def new
     @role = normalized_role(params[:role])
   end
@@ -15,6 +17,8 @@ class SessionsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  
 
   def destroy
     session[:user_id] = nil

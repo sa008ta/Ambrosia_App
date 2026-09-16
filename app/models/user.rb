@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  STAFF_REGISTRATION_PASSWORD = "Ambrosia"
+  STAFF_REGISTRATION_PASSWORD = "JS2504"
 
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true

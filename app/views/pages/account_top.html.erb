@@ -1,0 +1,22 @@
+<h1>アカウントトップ</h1>
+
+<%= form_with model: @user, url: account_top_update_path, method: :patch do |form| %>
+  <div>
+    <label>メールアドレス</label><br>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <label>ユーザーネーム</label><br>
+    <%= form.text_field :username %>
+  </div>
+
+  <div>
+    <label>本名</label><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit "更新" %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<h1>履歴</h1>
+
+<!-- Added: past order history list for the user settings page. -->
+<% if @order_history.present? %>
+  <ul>
+    <% @order_history.each do |order| %>
+      <li>
+        <p><strong><%= order[:date] %></strong></p>
+        <p>商品: <%= order[:item] %></p>
+        <p>個数: <%= order[:quantity] %></p>
+        <p>合計: ¥<%= order[:total] %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>過去の注文履歴はまだありません。</p>
+<% end %>
+
+<p><%= link_to "設定に戻る", settings_path %></p>
