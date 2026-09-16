@@ -1,0 +1,29 @@
+<h1><%= @menu_item[:name] %></h1>
+
+<!-- Added: product detail view with qty plus/minus controls and an order submit action. -->
+<img src="/dammy.jpg" alt="<%= @menu_item[:name] %>" width="320" height="240">
+
+<p><%= @menu_item[:description] %></p>
+<p>価格: ¥<%= @menu_item[:price] %></p>
+
+<%= form_with url: menu_order_path(@menu_item[:id]), method: :post do %>
+  <div>
+    <button type="button" onclick="changeQuantity(-1)">-</button>
+    <input id="quantity" type="number" name="quantity" value="1" min="1" max="99" readonly>
+    <button type="button" onclick="changeQuantity(1)">+</button>
+  </div>
+
+  <div>
+    <%= submit_tag "注文する" %>
+  </div>
+<% end %>
+
+<p><%= link_to "メニューへ戻る", home_path %></p>
+
+<script>
+  function changeQuantity(amount) {
+    const input = document.getElementById('quantity');
+    const nextValue = Number(input.value) + amount;
+    input.value = nextValue < 1 ? 1 : nextValue;
+  }
+</script>

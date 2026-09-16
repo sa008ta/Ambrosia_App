@@ -1,14 +1,16 @@
-<div class="home-shell">
-  <div class="home-card">
-    <h1 class="heading">Ambrosia App</h1>
-    <p class="subtitle">食堂オーダー・注文のホーム画面</p>
+<h1>MENU</h1>
 
-    <div class="user-summary">
-      <strong><%= @user.name %></strong>さん（<%= @user.customer? ? "お客様" : "店員" %>）としてログイン中です。
-    </div>
-    
-    <div class="form-actions">
-      <%= button_to "ログアウト", logout_path, method: :delete, class: "secondary-button" %>
-    </div>
+<!-- Added: home page menu list using the same dummy image for each item. -->
+<% @menu_items.each do |item| %>
+  <div>
+    <%= link_to menu_detail_path(item[:id]) do %>
+      <img src="/dammy.jpg" alt="<%= item[:name] %>" width="220" height="180">
+    <% end %>
+    <p><strong><%= item[:name] %></strong></p>
+    <p>¥<%= item[:price] %></p>
   </div>
+<% end %>
+
+<div>
+  <%= button_to "ログアウト", logout_path, method: :delete %>
 </div>

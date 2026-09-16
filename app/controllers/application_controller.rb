@@ -23,6 +23,12 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "ログインしてください。"
   end
 
+  def require_logout
+    return unless logged_in?
+
+    redirect_to home_path, notice: "すでにログイン済みです。"
+  end
+
   def normalized_role(role)
     return "customer" unless role.present?
 
