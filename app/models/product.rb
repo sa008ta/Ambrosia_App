@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   has_many :order_items, dependent: :nullify
+  has_one_attached :image
 
   scope :available, -> { where(available: true) }
 

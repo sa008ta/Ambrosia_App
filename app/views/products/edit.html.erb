@@ -20,8 +20,8 @@
         <%= f.text_field :category, required: true %>
       </div>
       <div>
-        <%= f.label :image_url, "写真URLまたは画像パス" %><br>
-        <%= f.text_field :image_url %>
+        <%= f.label :image, "写真ファイル" %><br>
+        <%= f.file_field :image, accept: "image/*", capture: "environment" %>
       </div>
       <div>
         <%= f.label :description, "説明" %><br>

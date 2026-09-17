@@ -2,7 +2,11 @@
   <%= link_to "← メニューへ戻る", home_path, class: "back-link" %>
 
   <article class="detail-card">
-    <%= image_tag(@menu_item.image_url.presence || "/dammy.jpg", class: "detail-image", alt: @menu_item.name, width: 800, height: 500) %>
+    <% if @menu_item.image.attached? %>
+      <%= image_tag(@menu_item.image, class: "detail-image", alt: @menu_item.name, width: 800, height: 500) %>
+    <% else %>
+      <%= image_tag("/dammy.jpg", class: "detail-image", alt: @menu_item.name, width: 800, height: 500) %>
+    <% end %>
     <div class="detail-body">
       <h1 class="detail-title"><%= @menu_item.name %></h1>
       <p class="detail-description"><%= @menu_item.description %></p>

@@ -12,7 +12,11 @@
       <% @menu_items.each do |item| %>
         <article class="menu-card">
           <%= link_to menu_detail_path(item.id), class: "menu-card-link" do %>
-            <%= image_tag(item.image_url.presence || "/dammy.jpg", class: "menu-card-image", alt: item.name, width: 400, height: 300) %>
+            <% if item.image.attached? %>
+              <%= image_tag(item.image, class: "menu-card-image", alt: item.name, width: 400, height: 300) %>
+            <% else %>
+              <%= image_tag("/dammy.jpg", class: "menu-card-image", alt: item.name, width: 400, height: 300) %>
+            <% end %>
             <div class="menu-card-body">
               <h3 class="menu-card-name"><%= item.name %></h3>
               <p class="menu-card-description"><%= item.description %></p>
