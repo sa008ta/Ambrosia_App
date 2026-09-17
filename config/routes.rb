@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   get "/settings", to: "pages#settings", as: :settings
   get "/settings/account_top", to: "pages#account_top", as: :account_top
   get "/settings/history", to: "pages#history", as: :history
+  get "/settings/language", to: "pages#language_settings", as: :language_settings
   patch "/settings/account_top", to: "users#update_account", as: :account_top_update
+  patch "/settings/language", to: "users#update_language", as: :language_update
   get "/menu/:id", to: "pages#menu_detail", as: :menu_detail
   post "/menu/:id/order", to: "pages#order", as: :menu_order
 

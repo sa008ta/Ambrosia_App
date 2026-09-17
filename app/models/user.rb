@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, length: { minimum: 6 }, if: -> { password.present? }
   validates :role, inclusion: { in: %w[customer staff] }
+  validates :language, inclusion: { in: %w[ja hiragana en] }
 
   def customer?
     role == "customer"

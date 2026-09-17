@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
-  before_action :require_login, only: [:home, :account_top, :history, :menu_detail, :order, :information, :settings]
-  before_action :redirect_logged_in_user_from_landing, only: [:landing]
+  before_action :require_login, only: [:home, :account_top, :history, :language_settings, :menu_detail, :order, :information, :settings]
+  before_action :redirect_to_language_setup, only: [:landing]
+  skip_before_action :redirect_to_language_setup, if: proc { current_user&.language.present? }
 
   def landing
   end
@@ -35,6 +36,10 @@ class PagesController < ApplicationController
     ]
   end
 
+  def language_settings
+    @user = current_user
+  end
+
   def information
   end
 
@@ -63,6 +68,13 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def redirect_to_language_setup
+    return if current_user.nil?
+    return if current_user.language.present?
+
+    redirect_to language_settings_path, notice: "言語設定をしてください。"
+  end
 
   def redirect_logged_in_user_from_landing
     return unless logged_in?

@@ -1,0 +1,29 @@
+<h1>言語設定</h1>
+
+<!-- Added: language selection screen that shows on first login or in settings. Select from 3 language options. -->
+<%= form_with model: @user, url: language_update_path, method: :patch do |form| %>
+  <div>
+    <label>
+      <%= form.radio_button :language, "ja" %>
+      日本語
+    </label>
+  </div>
+
+  <div>
+    <label>
+      <%= form.radio_button :language, "hiragana" %>
+      にほんご（ひらがな）
+    </label>
+  </div>
+
+  <div>
+    <label>
+      <%= form.radio_button :language, "en" %>
+      English
+    </label>
+  </div>
+
+  <div>
+    <%= form.submit "設定" %>
+  </div>
+<% end %>
