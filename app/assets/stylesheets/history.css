@@ -1,0 +1,55 @@
+/* Mobile-specific tweaks for the history page
+   - Preserve desktop styles; add small, touch-friendly adjustments for <=600px
+*/
+
+@media (max-width: 600px) {
+  .history-page {
+    padding: 12px;
+  }
+
+  .history-page h1 {
+    font-size: 1.25rem;
+    margin: 0 0 12px;
+  }
+
+  .history-page ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .history-page ul li {
+    padding: 12px;
+    border-radius: 10px;
+    background: var(--app-surface);
+    border: 1px solid var(--app-line);
+    box-shadow: none;
+  }
+
+  .history-page ul li p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+  }
+
+  /* Emphasize date row and keep text readable */
+  .history-page ul li p strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+
+  /* Lighten visual weight on very small screens */
+  @media (max-width: 360px) {
+    .history-page ul li {
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .history-page ul li p {
+      font-size: 0.9rem;
+    }
+  }
+}

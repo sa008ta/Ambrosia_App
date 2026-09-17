@@ -1,0 +1,83 @@
+/* Mobile-specific tweaks for settings screens
+   Goal: Preserve existing desktop styles; apply minimal, high-impact adjustments
+   Target: screens <= 600px (smartphones)
+*/
+
+@media (max-width: 600px) {
+  /* Ensure the page uses comfortable inner padding on small screens */
+  .settings-page,
+  .language-settings {
+    padding: 12px;
+  }
+
+  /* Headline sizing and spacing */
+  .settings-page h1,
+  .language-settings h1 {
+    font-size: 1.25rem;
+    margin: 0 0 12px;
+  }
+
+  /* Convert simple lists to touch-friendly full-width buttons */
+  .settings-page ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .settings-page ul li a,
+  .settings-page ul li form,
+  .settings-page ul li button {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--app-surface);
+    border: 1px solid var(--app-line);
+    color: var(--app-ink);
+    text-decoration: none;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  /* Make form areas and radio labels easier to tap */
+  .language-settings form > div {
+    margin-bottom: 10px;
+  }
+
+  .language-settings label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: rgba(0,0,0,0.02);
+  }
+
+  .language-settings input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--app-orange);
+  }
+
+  .language-settings input[type="submit"],
+  .language-settings button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--app-orange);
+    color: #fff;
+    border: 0;
+    font-weight: 700;
+  }
+
+  /* Reduce shadows and heavy visuals on small screens to keep layout lightweight */
+  .settings-page .menu-card,
+  .language-settings .menu-card {
+    box-shadow: none;
+  }
+}

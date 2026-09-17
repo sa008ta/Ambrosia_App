@@ -1,9 +1,11 @@
-<h1>設定</h1>
+<main class="app-shell settings-page">
+  <h1>設定</h1>
 
-<ul>
-  <li><%= link_to "アカウントトップ", account_top_path %></li>
-  <li><%= link_to "履歴", history_path %></li>
-  <li><%= link_to "言語設定", language_settings_path %></li>
-  <li><%= button_to "ログアウト", logout_path, method: :delete %></li>
-</ul>
+  <ul>
+    <li><%= link_to "アカウントトップ", account_top_path %></li>
+    <li><%= link_to "履歴", history_path %></li>
+    <li><%= link_to "言語設定", language_settings_path %></li>
+    <li><%= button_to "ログアウト", logout_path, method: :delete %></li>
+  </ul>
+</main>
 
