@@ -16,8 +16,17 @@
         <%= f.number_field :stock_quantity, min: 0, required: true %>
       </div>
       <div>
-        <%= f.label :category, "カテゴリー" %><br>
-        <%= f.text_field :category, required: true %>
+        <label>ラベル（複数選択可）</label><br>
+        <% @labels.each do |label| %>
+          <label>
+            <%= check_box_tag "product[label_ids][]", label.id, @product.label_ids.include?(label.id) %>
+            <%= label.name %>
+          </label>
+        <% end %>
+      </div>
+      <div>
+        <%= label_tag "product_new_label_names", "新規ラベル（カンマ区切り）" %><br>
+        <%= text_field_tag "product[new_label_names]", nil, placeholder: "期間限定, スイーツ" %>
       </div>
       <div>
         <%= f.label :image, "写真ファイル" %><br>

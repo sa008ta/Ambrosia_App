@@ -1,0 +1,24 @@
+<main class="app-shell">
+  <section>
+    <h1>表示ラベル順変更</h1>
+    <p><%= link_to "商品編集へ戻る", products_path %></p>
+  </section>
+
+  <section>
+    <% if @labels.present? %>
+      <ul>
+        <% @labels.each do |label| %>
+          <li>
+            <p><strong><%= label.name %></strong></p>
+            <p>
+              <%= button_to "上へ", move_label_up_path(label), method: :patch, form: { style: "display:inline" } %>
+              <%= button_to "下へ", move_label_down_path(label), method: :patch, form: { style: "display:inline" } %>
+            </p>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>ラベルはまだありません。</p>
+    <% end %>
+  </section>
+</main>
