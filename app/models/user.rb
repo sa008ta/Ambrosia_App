@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :orders, dependent: :destroy
 
-  STAFF_REGISTRATION_PASSWORD = "JS2504"
+  STAFF_REGISTRATION_PASSWORD = "AmbrosiaStaff"
 
   validates :name, presence: true
   validates :username, presence: true, uniqueness: { message: "そのユーザーネームは使用されています" }
