@@ -49,16 +49,26 @@ class PagesController < ApplicationController
   end
 
   def order
-    @menu_item = Product.available.find_by(id: params[:id])
-    if @menu_item.nil?
-      redirect_to home_path, alert: "指定の商品は見つかりませんでした。"
-      return
-    end
-
     quantity = params[:quantity].to_i
     quantity = 1 if quantity < 1
 
+    order_completed = false
+    alert_message = nil
+
     ActiveRecord::Base.transaction do
+      @menu_item = Product.lock.find_by(id: params[:id], available: true)
+      if @menu_item.nil?
+        alert_message = "指定の商品は見つかりませんでした。"
+        raise ActiveRecord::Rollback
+      end
+
+      if @menu_item.stock_quantity < quantity
+        alert_message = @menu_item.sold_out? ? "売り切れの商品です。" : "在庫が不足しています。"
+        raise ActiveRecord::Rollback
+      end
+
+      @menu_item.update!(stock_quantity: @menu_item.stock_quantity - quantity)
+
       order = current_user.orders.create!(total_amount: @menu_item.price * quantity)
       order.order_items.create!(
         product: @menu_item,
@@ -67,6 +77,13 @@ class PagesController < ApplicationController
         product_name: @menu_item.name,
         product_category: @menu_item.category
       )
+
+      order_completed = true
+    end
+
+    unless order_completed
+      redirect_to menu_detail_path(params[:id]), alert: alert_message || "注文に失敗しました。"
+      return
     end
 
     flash[:notice] = "#{@menu_item.name}を#{quantity}個注文しました。"

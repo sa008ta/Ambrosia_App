@@ -15,7 +15,8 @@
             <p><strong><%= product.name %></strong> (¥<%= product.price %>)</p>
             <p>カテゴリ: <%= product.category %></p>
             <p>説明: <%= product.description %></p>
-            <p>状態: <%= product.available? ? "販売中" : "削除済み" %></p>
+            <p>在庫: <%= product.stock_quantity %></p>
+            <p>状態: <%= product.status_label %></p>
             <p>
               <%= link_to "編集", edit_product_path(product) %>
               <%= button_to "削除", product_path(product), method: :delete, form: { style: "display:inline" }, data: { turbo_confirm: "本当に削除しますか？" } %>

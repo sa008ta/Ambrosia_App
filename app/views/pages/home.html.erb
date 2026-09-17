@@ -18,9 +18,12 @@
               <p class="menu-card-description"><%= item.description %></p>
               <div class="menu-card-meta">
                 <span class="menu-card-price">¥<%= item.price %></span>
-                <span class="menu-card-calorie"><%= item.category %></span>
+                <span class="menu-card-calorie"><%= item.sold_out? ? "売り切れ" : item.category %></span>
               </div>
             </div>
+          <% end %>
+          <% if item.sold_out? %>
+            <span class="menu-card-badge">売り切れ</span>
           <% end %>
         </article>
       <% end %>
