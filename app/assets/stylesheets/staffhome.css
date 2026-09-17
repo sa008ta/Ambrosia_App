@@ -1,0 +1,64 @@
+/* Mobile-specific styling for staff home page.
+   Keep the current desktop layout intact; apply only minimal adjustments on small screens. */
+
+@media (max-width: 600px) {
+  .staff-home {
+    padding: 12px;
+  }
+
+  .staff-home section {
+    margin-bottom: 16px;
+  }
+
+  .staff-home h1 {
+    margin: 0 0 8px;
+    font-size: 1.5rem;
+  }
+
+  .staff-home h2 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+  }
+
+  .staff-home p {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .staff-home a {
+    display: inline-block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--app-surface);
+    border: 1px solid var(--app-line);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .staff-home ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .staff-home li {
+    padding: 12px;
+    border: 1px solid var(--app-line);
+    border-radius: 10px;
+    background: var(--app-surface);
+    box-shadow: none;
+  }
+
+  .staff-home li p {
+    margin: 6px 0;
+    font-size: 0.9rem;
+  }
+
+  .staff-home li p strong {
+    display: inline-block;
+    margin-bottom: 2px;
+  }
+}
