@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:update_account]
+  before_action :require_login, only: [:update_account, :update_language]
 
   def new
     @role = normalized_role(params[:role])
@@ -34,6 +34,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_language
+    @user = current_user
+    return redirect_to root_path, alert: "ログインしてください。" unless @user
+
+    if @user.update(language_params)
+      redirect_to home_path, notice: "言語設定を更新しました。"
+    else
+      render "pages/language_settings", status: :unprocessable_entity
+    end
+  end
+
   private
 
   def user_params
@@ -43,4 +54,9 @@ class UsersController < ApplicationController
   def account_params
     params.require(:user).permit(:name, :username, :email)
   end
+
+  def language_params
+    params.require(:user).permit(:language)
+  end
 end
+
