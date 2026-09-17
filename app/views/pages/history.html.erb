@@ -1,14 +1,17 @@
 <h1>履歴</h1>
 
-<!-- Added: past order history list for the user settings page. -->
-<% if @order_history.present? %>
+<% if @orders.present? %>
   <ul>
-    <% @order_history.each do |order| %>
+    <% @orders.each do |order| %>
       <li>
-        <p><strong><%= order[:date] %></strong></p>
-        <p>商品: <%= order[:item] %></p>
-        <p>個数: <%= order[:quantity] %></p>
-        <p>合計: ¥<%= order[:total] %></p>
+        <p><strong><%= l(order.created_at, format: :short) %></strong></p>
+        <% order.order_items.each do |item| %>
+          <p>商品: <%= item.product_name %></p>
+          <p>カテゴリ: <%= item.product_category %></p>
+          <p>個数: <%= item.quantity %></p>
+          <p>単価: ¥<%= item.unit_price %></p>
+        <% end %>
+        <p>合計: ¥<%= order.total_amount %></p>
       </li>
     <% end %>
   </ul>

@@ -1,0 +1,33 @@
+<main class="app-shell">
+  <section>
+    <h1>商品追加</h1>
+
+    <%= form_with model: @product, url: products_path, method: :post do |f| %>
+      <div>
+        <%= f.label :name, "商品名" %><br>
+        <%= f.text_field :name, required: true %>
+      </div>
+      <div>
+        <%= f.label :price, "値段" %><br>
+        <%= f.number_field :price, min: 0, required: true %>
+      </div>
+      <div>
+        <%= f.label :category, "カテゴリー" %><br>
+        <%= f.text_field :category, placeholder: "drink / food", required: true %>
+      </div>
+      <div>
+        <%= f.label :image_url, "写真URLまたは画像パス" %><br>
+        <%= f.text_field :image_url, placeholder: "/images/sample.jpg" %>
+      </div>
+      <div>
+        <%= f.label :description, "説明" %><br>
+        <%= f.text_area :description, rows: 4, required: true %>
+      </div>
+      <div>
+        <%= f.submit "追加する" %>
+      </div>
+    <% end %>
+
+    <p><%= link_to "商品編集へ戻る", products_path %></p>
+  </section>
+</main>
