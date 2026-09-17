@@ -6,6 +6,16 @@
   </section>
 
   <section>
+    <h2>表示ラベル順変更</h2>
+    <p><%= link_to "変更", labels_path %></p>
+    <% if @labels.present? %>
+      <p><%= @labels.map(&:name).join(" / ") %></p>
+    <% else %>
+      <p>ラベルはまだありません。</p>
+    <% end %>
+  </section>
+
+  <section>
     <h2>商品一覧</h2>
     <% if @products.present? %>
       <ul>
@@ -19,7 +29,7 @@
               <% end %>
             </p>
             <p><strong><%= product.name %></strong> (¥<%= product.price %>)</p>
-            <p>カテゴリ: <%= product.category %></p>
+            <p>ラベル: <%= product.label_names_text %></p>
             <p>説明: <%= product.description %></p>
             <p>在庫: <%= product.stock_quantity %></p>
             <p>状態: <%= product.status_label %></p>

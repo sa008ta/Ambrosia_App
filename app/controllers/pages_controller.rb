@@ -20,7 +20,14 @@ class PagesController < ApplicationController
       render :staff_home and return
     end
 
-    @menu_items = Product.available.order(created_at: :desc)
+    @label_sections = Label.order(:position, :id).map do |label|
+      products = label.products.available.with_attached_image.order(created_at: :desc)
+      next if products.blank?
+
+      { label: label, products: products }
+    end.compact
+
+    @menu_items_count = @label_sections.flat_map { |section| section[:products].map(&:id) }.uniq.size
   end
 
   def account_top
@@ -75,7 +82,7 @@ class PagesController < ApplicationController
         quantity: quantity,
         unit_price: @menu_item.price,
         product_name: @menu_item.name,
-        product_category: @menu_item.category,
+        product_category: @menu_item.label_names_text,
         provided: false
       )
 

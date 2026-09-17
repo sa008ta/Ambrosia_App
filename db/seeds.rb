@@ -22,4 +22,10 @@ products.each do |attrs|
 	product.assign_attributes(attrs)
 	product.available = true if product.available.nil?
 	product.save!
+
+	label = Label.find_or_create_by!(name: attrs[:category]) do |new_label|
+		new_label.position = Label.maximum(:position).to_i + 1
+	end
+
+	product.labels << label unless product.labels.exists?(label.id)
 end

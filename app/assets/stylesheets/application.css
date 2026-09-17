@@ -158,6 +158,23 @@ input {
 	gap: 12px;
 }
 
+.label-section {
+	margin-bottom: 20px;
+}
+
+.label-row {
+	display: flex;
+	gap: 12px;
+	overflow-x: auto;
+	padding-bottom: 6px;
+	scroll-snap-type: x proximity;
+}
+
+.label-row-item {
+	flex: 0 0 220px;
+	scroll-snap-align: start;
+}
+
 .menu-card {
 	position: relative;
 	overflow: hidden;

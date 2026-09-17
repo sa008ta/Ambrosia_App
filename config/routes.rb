@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   get "/menu/:id", to: "pages#menu_detail", as: :menu_detail
   post "/menu/:id/order", to: "pages#order", as: :menu_order
   resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :labels, only: [:index]
+  patch "/labels/:id/move_up", to: "labels#move_up", as: :move_label_up
+  patch "/labels/:id/move_down", to: "labels#move_down", as: :move_label_down
   patch "/order_items/:id/mark_provided", to: "order_items#mark_provided", as: :mark_order_item_provided
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
