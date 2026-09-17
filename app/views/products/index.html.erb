@@ -11,7 +11,13 @@
       <ul>
         <% @products.each do |product| %>
           <li>
-            <p><%= image_tag(product.image_url.presence || "/dammy.jpg", alt: product.name, width: 120, height: 90) %></p>
+            <p>
+              <% if product.image.attached? %>
+                <%= image_tag(product.image, alt: product.name, width: 120, height: 90) %>
+              <% else %>
+                <%= image_tag("/dammy.jpg", alt: product.name, width: 120, height: 90) %>
+              <% end %>
+            </p>
             <p><strong><%= product.name %></strong> (¥<%= product.price %>)</p>
             <p>カテゴリ: <%= product.category %></p>
             <p>説明: <%= product.description %></p>
