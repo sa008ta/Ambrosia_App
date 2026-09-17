@@ -414,4 +414,27 @@ input {
 		border-radius: 10px;
 		box-shadow: 0 6px 16px rgba(40, 54, 47, 0.08);
 	}
+
+	/* Mobile: reduce product card image height to improve viewport fit */
+	.menu-card-image {
+		aspect-ratio: auto;
+		max-height: 120px;
+		width: 100%;
+		object-fit: cover;
+	}
+
+	/* Mobile: limit menu detail image height to keep layout compact */
+	.detail-image {
+		max-height: 220px;
+		width: 100%;
+		object-fit: cover;
+	}
+
+	/* Limit header image height on small screens and crop via object-fit to keep layout */
+	.top-header-image {
+		max-height: 160px;
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+	}
 }
