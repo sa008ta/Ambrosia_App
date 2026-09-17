@@ -1,12 +1,39 @@
-<h1>MENU</h1>
+<main class="app-shell">
+  <header class="app-header">
+    <div>
+      <p class="app-brand">Ambrosia</p>
+      <p class="app-eyebrow">今日の食堂メニュー</p>
+    </div>
+  </header>
 
-<!-- Added: home page menu list using the same dummy image for each item. -->
-<% @menu_items.each do |item| %>
-  <div>
-    <%= link_to menu_detail_path(item[:id]) do %>
-      <img src="/dammy.jpg" alt="<%= item[:name] %>" width="220" height="180">
-    <% end %>
-    <p><strong><%= item[:name] %></strong></p>
-    <p>¥<%= item[:price] %></p>
-  </div>
-<% end %>
+  <section class="daily-special">
+  </section>
+
+  <section aria-labelledby="menu-title">
+    <div class="section-heading">
+      <h2 id="menu-title">メニュー</h2>
+      <p><%= @menu_items.size %>品</p>
+    </div>
+
+    <div class="menu-grid">
+      <% @menu_items.each do |item| %>
+        <article class="menu-card">
+          <%= link_to menu_detail_path(item[:id]), class: "menu-card-link" do %>
+            <%= image_tag "/dammy.jpg", class: "menu-card-image", alt: item[:name], width: 400, height: 300 %>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name"><%= item[:name] %></h3>
+              <p class="menu-card-description"><%= item[:description] %></p>
+              <div class="menu-card-meta">
+                <span class="menu-card-price">¥<%= item[:price] %></span>
+                <span class="menu-card-calorie"><%= item[:calories] ? "#{item[:calories]} kcal" : "カロリー未登録" %></span>
+              </div>
+            </div>
+          <% end %>
+          <% if item[:sold_out] %>
+            <span class="menu-card-badge">売切れ</span>
+          <% end %>
+        </article>
+      <% end %>
+    </div>
+  </section>
+</main>
