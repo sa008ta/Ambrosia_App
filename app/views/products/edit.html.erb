@@ -12,6 +12,10 @@
         <%= f.number_field :price, min: 0, required: true %>
       </div>
       <div>
+        <%= f.label :stock_quantity, "在庫数" %><br>
+        <%= f.number_field :stock_quantity, min: 0, required: true %>
+      </div>
+      <div>
         <%= f.label :category, "カテゴリー" %><br>
         <%= f.text_field :category, required: true %>
       </div>

@@ -17,15 +17,27 @@
           <dt>商品ID</dt>
           <dd><%= @menu_item.id %></dd>
         </div>
+        <div>
+          <dt>在庫</dt>
+          <dd><%= @menu_item.stock_quantity %></dd>
+        </div>
+        <div>
+          <dt>状態</dt>
+          <dd><%= @menu_item.status_label %></dd>
+        </div>
       </dl>
 
-      <%= form_with url: menu_order_path(@menu_item.id), method: :post, class: "order-form" do %>
-        <div class="quantity-control" aria-label="注文数量">
-          <button type="button" onclick="changeQuantity(-1)" aria-label="数量を減らす">−</button>
-          <input id="quantity" type="number" name="quantity" value="1" min="1" max="99" readonly aria-label="数量">
-          <button type="button" onclick="changeQuantity(1)" aria-label="数量を増やす">＋</button>
-        </div>
-        <%= submit_tag "注文する", class: "primary-button" %>
+      <% if @menu_item.sold_out? %>
+        <p>この商品は売り切れです。</p>
+      <% else %>
+        <%= form_with url: menu_order_path(@menu_item.id), method: :post, class: "order-form" do %>
+          <div class="quantity-control" aria-label="注文数量">
+            <button type="button" onclick="changeQuantity(-1)" aria-label="数量を減らす">−</button>
+            <input id="quantity" type="number" name="quantity" value="1" min="1" max="<%= @menu_item.stock_quantity %>" readonly aria-label="数量">
+            <button type="button" onclick="changeQuantity(1)" aria-label="数量を増やす">＋</button>
+          </div>
+          <%= submit_tag "注文する", class: "primary-button" %>
+        <% end %>
       <% end %>
     </div>
   </article>
@@ -34,7 +46,14 @@
 <script>
   function changeQuantity(amount) {
     const input = document.getElementById('quantity');
+    if (!input) return;
     const nextValue = Number(input.value) + amount;
-    input.value = nextValue < 1 ? 1 : nextValue;
+    const maxValue = Number(input.max) || 99;
+    if (nextValue < 1) {
+      input.value = 1;
+      return;
+    }
+
+    input.value = nextValue > maxValue ? maxValue : nextValue;
   }
 </script>
