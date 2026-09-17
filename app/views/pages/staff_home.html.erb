@@ -12,8 +12,12 @@
           <li>
             <p><strong><%= item.product_name %></strong> (<%= item.product_category %>)</p>
             <p>数量: <%= item.quantity %> / 単価: ¥<%= item.unit_price %></p>
+            <p>ステータス: <%= item.status_label %></p>
             <p>注文者: <%= item.order.user.name %> (@<%= item.order.user.username %>)</p>
             <p>注文日時: <%= l(item.created_at, format: :short) %></p>
+            <% unless item.provided? %>
+              <p><%= button_to "提供済みにする", mark_order_item_provided_path(item), method: :patch %></p>
+            <% end %>
           </li>
         <% end %>
       </ul>
