@@ -29,6 +29,18 @@ class ApplicationController < ActionController::Base
     redirect_to home_path, notice: "すでにログイン済みです。"
   end
 
+  def require_staff
+    return if logged_in? && current_user&.staff?
+
+    redirect_to home_path, alert: "店員アカウントでログインしてください。"
+  end
+
+  def require_customer
+    return if logged_in? && current_user&.customer?
+
+    redirect_to home_path, alert: "この機能はお客様アカウント専用です。"
+  end
+
   def normalized_role(role)
     return "customer" unless role.present?
 

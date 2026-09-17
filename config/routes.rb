@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   patch "/settings/language", to: "users#update_language", as: :language_update
   get "/menu/:id", to: "pages#menu_detail", as: :menu_detail
   post "/menu/:id/order", to: "pages#order", as: :menu_order
+  resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

@@ -2,24 +2,24 @@
   <%= link_to "← メニューへ戻る", home_path, class: "back-link" %>
 
   <article class="detail-card">
-    <%= image_tag "/dammy.jpg", class: "detail-image", alt: @menu_item[:name], width: 800, height: 500 %>
+    <%= image_tag(@menu_item.image_url.presence || "/dammy.jpg", class: "detail-image", alt: @menu_item.name, width: 800, height: 500) %>
     <div class="detail-body">
-      <h1 class="detail-title"><%= @menu_item[:name] %></h1>
-      <p class="detail-description"><%= @menu_item[:description] %></p>
-      <p class="detail-price">¥<%= @menu_item[:price] %></p>
+      <h1 class="detail-title"><%= @menu_item.name %></h1>
+      <p class="detail-description"><%= @menu_item.description %></p>
+      <p class="detail-price">¥<%= @menu_item.price %></p>
 
       <dl class="detail-info">
         <div>
-          <dt>カロリー</dt>
-          <dd><%= @menu_item[:calories] ? "#{@menu_item[:calories]} kcal" : "未登録" %></dd>
+          <dt>カテゴリー</dt>
+          <dd><%= @menu_item.category %></dd>
         </div>
         <div>
-          <dt>アレルギー</dt>
-          <dd><%= @menu_item[:allergens] || "要確認" %></dd>
+          <dt>商品ID</dt>
+          <dd><%= @menu_item.id %></dd>
         </div>
       </dl>
 
-      <%= form_with url: menu_order_path(@menu_item[:id]), method: :post, class: "order-form" do %>
+      <%= form_with url: menu_order_path(@menu_item.id), method: :post, class: "order-form" do %>
         <div class="quantity-control" aria-label="注文数量">
           <button type="button" onclick="changeQuantity(-1)" aria-label="数量を減らす">−</button>
           <input id="quantity" type="number" name="quantity" value="1" min="1" max="99" readonly aria-label="数量">
