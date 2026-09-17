@@ -5,6 +5,7 @@
 @media (max-width: 600px) {
   .history-page {
     padding: 12px;
+    padding-bottom: 12px;
   }
 
   .history-page h1 {
