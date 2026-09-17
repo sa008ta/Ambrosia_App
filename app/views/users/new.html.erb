@@ -49,6 +49,7 @@
       <div class="form-actions">
         <%= f.submit "登録する", class: "primary-button" %>
         <%= link_to "戻る", root_path, class: "link-button" %>
+        <%= link_to "ログインの方はこちら", login_path(role: @role), class: "link-button" %>
       </div>
     <% end %>
   </div>
