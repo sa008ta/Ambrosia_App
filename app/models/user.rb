@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  has_many :orders, dependent: :destroy
 
   STAFF_REGISTRATION_PASSWORD = "JS2504"
 

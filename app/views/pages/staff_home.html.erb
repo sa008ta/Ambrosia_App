@@ -1,0 +1,24 @@
+<main class="app-shell">
+  <section>
+    <h1>STAFF専用</h1>
+    <p><%= link_to "商品の編集", products_path %></p>
+  </section>
+
+  <section>
+    <h2>注文された商品一覧</h2>
+    <% if @ordered_items.present? %>
+      <ul>
+        <% @ordered_items.each do |item| %>
+          <li>
+            <p><strong><%= item.product_name %></strong> (<%= item.product_category %>)</p>
+            <p>数量: <%= item.quantity %> / 単価: ¥<%= item.unit_price %></p>
+            <p>注文者: <%= item.order.user.name %> (@<%= item.order.user.username %>)</p>
+            <p>注文日時: <%= l(item.created_at, format: :short) %></p>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>注文はまだありません。</p>
+    <% end %>
+  </section>
+</main>

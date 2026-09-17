@@ -11,19 +11,16 @@
     <div class="menu-grid">
       <% @menu_items.each do |item| %>
         <article class="menu-card">
-          <%= link_to menu_detail_path(item[:id]), class: "menu-card-link" do %>
-            <%= image_tag "/dammy.jpg", class: "menu-card-image", alt: item[:name], width: 400, height: 300 %>
+          <%= link_to menu_detail_path(item.id), class: "menu-card-link" do %>
+            <%= image_tag(item.image_url.presence || "/dammy.jpg", class: "menu-card-image", alt: item.name, width: 400, height: 300) %>
             <div class="menu-card-body">
-              <h3 class="menu-card-name"><%= item[:name] %></h3>
-              <p class="menu-card-description"><%= item[:description] %></p>
+              <h3 class="menu-card-name"><%= item.name %></h3>
+              <p class="menu-card-description"><%= item.description %></p>
               <div class="menu-card-meta">
-                <span class="menu-card-price">¥<%= item[:price] %></span>
-                <span class="menu-card-calorie"><%= item[:calories] ? "#{item[:calories]} kcal" : "カロリー未登録" %></span>
+                <span class="menu-card-price">¥<%= item.price %></span>
+                <span class="menu-card-calorie"><%= item.category %></span>
               </div>
             </div>
-          <% end %>
-          <% if item[:sold_out] %>
-            <span class="menu-card-badge">売切れ</span>
           <% end %>
         </article>
       <% end %>
