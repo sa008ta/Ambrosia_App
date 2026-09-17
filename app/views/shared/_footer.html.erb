@@ -1,16 +1,13 @@
 <nav class="bottom-nav" aria-label="メインナビゲーション">
   <%= link_to home_path, aria: { current: current_page?(home_path) ? "page" : nil } do %>
     <%= image_tag(current_page?(home_path) ? "/footer/home_now.jpg" : "/footer/home.jpg", width: 32, height: 32, alt: "ホーム") %>
-    <span>メニュー</span>
   <% end %>
 
   <%= link_to information_path, aria: { current: current_page?(information_path) ? "page" : nil } do %>
     <%= image_tag(current_page?(information_path) ? "/footer/information_now.jpg" : "/footer/information.jpg", width: 32, height: 32, alt: "空き情報") %>
-    <span>空き情報</span>
   <% end %>
 
   <%= link_to settings_path, aria: { current: current_page?(settings_path) ? "page" : nil } do %>
     <%= image_tag(current_page?(settings_path) ? "/footer/setting_now.jpg" : "/footer/setting.jpg", width: 32, height: 32, alt: "設定") %>
-    <span>設定</span>
   <% end %>
 </nav>

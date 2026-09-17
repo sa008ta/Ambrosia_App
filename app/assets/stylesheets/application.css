@@ -62,6 +62,20 @@ input {
 	margin-bottom: 24px;
 }
 
+.top-header {
+	width: min(100%, 720px);
+	margin: 0 auto;
+	padding: 12px 16px 0;
+}
+
+.top-header-image {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
+	box-shadow: var(--app-shadow);
+}
+
 .app-brand {
 	margin: 0;
 	color: var(--app-orange-dark);
