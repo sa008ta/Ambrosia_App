@@ -3,7 +3,9 @@
 
   <ul>
     <li><%= link_to "アカウントトップ", account_top_path %></li>
-    <li><%= link_to "履歴", history_path %></li>
+    <% if current_user.customer? %>
+      <li><%= link_to "履歴", history_path %></li>
+    <% end %>
     <li><%= link_to "言語設定", language_settings_path %></li>
     <li><%= button_to "ログアウト", logout_path, method: :delete %></li>
   </ul>

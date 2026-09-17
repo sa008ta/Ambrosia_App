@@ -75,7 +75,8 @@ class PagesController < ApplicationController
         quantity: quantity,
         unit_price: @menu_item.price,
         product_name: @menu_item.name,
-        product_category: @menu_item.category
+        product_category: @menu_item.category,
+        provided: false
       )
 
       order_completed = true
