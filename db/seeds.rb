@@ -8,14 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-products = [
-	{ name: "季節のサラダ", description: "新鮮な野菜とドレッシングが合う、さっぱり軽めの一品です。", price: 780, category: "food", image_url: "/dammy.jpg", stock_quantity: 20 },
-	{ name: "トマトパスタ", description: "トマトの酸味と香りが広がる、定番のごちそうメニューです。", price: 980, category: "food", image_url: "/dammy.jpg", stock_quantity: 20 },
-	{ name: "コーヒーセット", description: "香り高いコーヒーと一緒に楽しめる、朝にぴったりのセットです。", price: 650, category: "drink", image_url: "/dammy.jpg", stock_quantity: 20 },
-	{ name: "チーズトースト", description: "温かくて香ばしい、満足感のある軽食です。", price: 520, category: "food", image_url: "/dammy.jpg", stock_quantity: 20 },
-	{ name: "ケーキセット", description: "少し甘めでリラックスできる、デザート感覚の一皿です。", price: 720, category: "food", image_url: "/dammy.jpg", stock_quantity: 20 },
-	{ name: "ティータイム", description: "ゆったりとしたひと時に合わせたい、上品な飲み物です。", price: 600, category: "drink", image_url: "/dammy.jpg", stock_quantity: 20 }
-]
 
 products.each do |attrs|
 	product = Product.find_or_initialize_by(name: attrs[:name])
