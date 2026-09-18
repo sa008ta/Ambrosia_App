@@ -6,7 +6,7 @@
   </section>
 
   <section>
-    <h2>表示ラベル順変更</h2>
+    <h2>商品表示設定</h2>
     <p><%= link_to "変更", labels_path %></p>
     <% if @labels.present? %>
       <p><%= @labels.map(&:name).join(" / ") %></p>
