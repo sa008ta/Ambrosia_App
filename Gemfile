@@ -65,4 +65,4 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'json', '< 3.0' # Fixes a security vulnerability in json gem versions >= 3.0.0
+gem 'json', '< 4.0' # Fixes a security vulnerability in json gem versions >= 3.0.0
